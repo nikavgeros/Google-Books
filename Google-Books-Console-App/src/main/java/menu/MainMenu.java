@@ -1,16 +1,16 @@
-package mainMenu;
+package menu;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Scanner;
 
-import static searchVolumeMenu.SearchVolumeMenu.searchVolumesMenu;
-import static shelfManagementMenu.ShelfManagementMenu.searchShelfManagementMenu;
+import static menu.searchVolumeMenu.SearchVolumeMenu.searchVolumesMenu;
+import static menu.shelfManagementMenu.ShelfManagementMenu.searchShelfManagementMenu;
 
 
 public class MainMenu {
 
-    public static void displayMainMenu(){
+    public static void displayMainMenu() {
         System.out.println("+--------------------------------------------------+");
         System.out.println("|                     Main Menu                    |");
         System.out.println("+--------------------------------------------------+");

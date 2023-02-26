@@ -1,11 +1,10 @@
-package searchVolumeMenu;
+package menu.searchVolumeMenu.options;
 
 import org.pojos.performingSearch.Volumes;
 import org.pojos.retrievingVolume.Volume;
 
-import java.io.*;
+import java.io.IOException;
 import java.net.URISyntaxException;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,60 +14,7 @@ import static org.utils.Utils.API_KEY;
 import static utils.Utils.readFile;
 import static utils.Utils.writeToFile;
 
-
-public class SearchVolumeMenu {
-
-
-    public static void displaySearchVolumesMenu(){
-        System.out.println("+--------------------------------------------------+");
-        System.out.println("|                   Volumes Menu                   |");
-        System.out.println("+--------------------------------------------------+");
-        System.out.println("| 1.  Search volumes based on criteria             |");
-        System.out.println("| 2.  View information about a specific volume     |");
-        System.out.println("| 3.  Search history                               |");
-        System.out.println("| 4.  Back to Main Menu                            |");
-        System.out.println("| 5.  Exit                                         |");
-        System.out.println("+--------------------------------------------------+");
-        System.out.println("Select option: ");
-    }
-
-
-    public static void searchVolumesMenu() throws URISyntaxException, IOException {
-        int back = -1;
-        int choice = -1;
-        Scanner in = new Scanner(System.in);
-        do {
-            displaySearchVolumesMenu();
-            try {
-                choice = Integer.parseInt(in.nextLine());
-            } catch (Exception e) {
-                choice = -1;
-            }
-
-            switch (choice) {
-                case 1:
-                    Volumes volumes = searchVolumesBasedOnCriteria();
-                    System.out.println(volumes.getItems().get(4).getVolumeInfo().toString());
-                    break;
-                case 2:
-                    Volume volume = viewInformationAboutASpecificVolume();
-                    System.out.println(volume.getVolumeInfo().toString());
-                    break;
-                case 3:
-                    String history = searchHistory();
-                    System.out.println(history);
-                    break;
-                case 4:
-                    back = choice;
-                    break;
-                case 5:
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Invalid input. Please try again");
-            }
-        } while (back != 4);
-    }
+public class SearchVolumeOptions {
 
 
     public static Volumes searchVolumesBasedOnCriteria() throws URISyntaxException, IOException {
@@ -193,10 +139,21 @@ public class SearchVolumeMenu {
     }
 
 
-    public static String searchHistory() throws IOException {
-        String history = readFile();
-        writeToFile(history);
-        return history;
+    public static String[] searchHistory() throws IOException {
+        return readFile().split("\n");
+    }
+
+
+    public static void searchHistoryOption() throws IOException {
+        String[] history = searchHistory();
+        System.out.println("+--------------------------------------------------+");
+        System.out.println("|                   History                        |");
+        System.out.println("+--------------------------------------------------+");
+        for (int i = 0; i < history.length; i++) {
+            System.out.println(String.format("| %d. %-45s |", i+1, history[i]));
+        }
+        System.out.println("+--------------------------------------------------+");
+        System.out.println();
     }
 
 }
