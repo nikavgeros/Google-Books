@@ -47,7 +47,7 @@ public class SearchVolumeMenu {
 
             switch (choice) {
                 case 1:
-                    Volumes volumes = SearchVolumesBasedOnCriteria();
+                    Volumes volumes = searchVolumesBasedOnCriteria();
                     System.out.println(volumes.getItems().get(4).getVolumeInfo().toString());
                     break;
                 case 2:
@@ -71,7 +71,7 @@ public class SearchVolumeMenu {
     }
 
 
-    public static Volumes SearchVolumesBasedOnCriteria() throws URISyntaxException, IOException {
+    public static Volumes searchVolumesBasedOnCriteria() throws URISyntaxException, IOException {
         Scanner in = new Scanner(System.in);
         String query;
 
