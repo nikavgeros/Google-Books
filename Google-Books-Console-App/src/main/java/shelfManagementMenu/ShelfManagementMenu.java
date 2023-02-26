@@ -10,10 +10,11 @@ import java.util.Scanner;
 
 import static org.api.GoogleBookAPI.*;
 import static org.utils.Utils.API_KEY;
+import static utils.Utils.getDefaultUserId;
+
 
 public class ShelfManagementMenu {
 
-    static String userId = "102701940585560677579";
 
     public static void displaySearchSelfManagement(){
         System.out.println("+--------------------------------------------------+");
@@ -27,6 +28,7 @@ public class ShelfManagementMenu {
         System.out.println("+--------------------------------------------------+");
         System.out.println("Select option: ");
     }
+
 
     public static void searchShelfManagementMenu() throws URISyntaxException, IOException {
         int back = -1;
@@ -65,13 +67,17 @@ public class ShelfManagementMenu {
         } while (back != 4);
     }
 
+
     public static Bookshelves retrieveAListOfUserPublicShelves() throws URISyntaxException, IOException {
-        Bookshelves bookshelves = retrievingBookshelves(userId, API_KEY);
+        Bookshelves bookshelves = retrievingBookshelves(getDefaultUserId(), API_KEY);
         return bookshelves;
     }
+
+
     public static Bookshelf viewInformationAboutAUsersPublicShelf() throws URISyntaxException, IOException {
         Scanner in = new Scanner(System.in);
         int bookshelfId;
+
         while (true) {
             System.out.println("Type bookshelf Id: ");
             try {
@@ -81,9 +87,10 @@ public class ShelfManagementMenu {
                 System.out.println("Invalid id");
             }
         }
-        Bookshelf bookshelf = retrievingBookshelf(userId, bookshelfId, API_KEY);
+        Bookshelf bookshelf = retrievingBookshelf(getDefaultUserId(), bookshelfId, API_KEY);
         return bookshelf;
     }
+
 
     public static BookshelfVolumes retrieveUserPublicShelfContents() throws URISyntaxException, IOException {
         Scanner in = new Scanner(System.in);
@@ -98,8 +105,8 @@ public class ShelfManagementMenu {
                 System.out.println("Invalid id");
             }
         }
-        BookshelfVolumes bookshelfVolumes = retrievingBookshelfVolumes(userId, bookshelfId, API_KEY);
-
+        BookshelfVolumes bookshelfVolumes = retrievingBookshelfVolumes(getDefaultUserId(), bookshelfId, API_KEY);
         return bookshelfVolumes;
     }
+
 }

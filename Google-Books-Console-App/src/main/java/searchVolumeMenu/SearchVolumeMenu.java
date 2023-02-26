@@ -5,12 +5,16 @@ import org.pojos.retrievingVolume.Volume;
 
 import java.io.*;
 import java.net.URISyntaxException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import static org.api.GoogleBookAPI.performingSearch;
 import static org.api.GoogleBookAPI.retrievingVolume;
 import static org.utils.Utils.API_KEY;
+import static utils.Utils.readFile;
+import static utils.Utils.writeToFile;
+
 
 public class SearchVolumeMenu {
 
@@ -27,6 +31,7 @@ public class SearchVolumeMenu {
         System.out.println("+--------------------------------------------------+");
         System.out.println("Select option: ");
     }
+
 
     public static void searchVolumesMenu() throws URISyntaxException, IOException {
         int back = -1;
@@ -65,15 +70,18 @@ public class SearchVolumeMenu {
         } while (back != 4);
     }
 
+
     public static Volumes SearchVolumesBasedOnCriteria() throws URISyntaxException, IOException {
         Scanner in = new Scanner(System.in);
         String query;
+
         while (true) {
             System.out.println("Type query: ");
             query = in.nextLine().trim();
             if (query.equals("")) {
                 System.out.println("Query is required!");
             } else {
+                writeToFile(query);
                 break;
             }
         }
@@ -92,7 +100,6 @@ public class SearchVolumeMenu {
             subject.add(userSubject);
         }
 
-
         System.out.println("Type author or press enter to continue: ");
         ArrayList<String> inauthors = new ArrayList();
         String userAuthor = in.nextLine().trim();
@@ -100,14 +107,12 @@ public class SearchVolumeMenu {
             inauthors.add(userAuthor);
         }
 
-
         System.out.println("Type isbn or press enter to continue: ");
         ArrayList<String> isbn = new ArrayList();
         String userIsbn = in.nextLine().trim();
         if (!userIsbn.equals("")) {
             isbn.add(userIsbn);
         }
-
 
         System.out.println("Type download or press enter to continue: ");
         String download = in.nextLine().trim();
@@ -135,7 +140,6 @@ public class SearchVolumeMenu {
             startIndex = 0;
             System.out.println("Invalid input. Start index replaced by default value 0");
         }
-
 
         System.out.println("Type max results or press enter to continue: ");
         Integer maxResults;
@@ -171,6 +175,7 @@ public class SearchVolumeMenu {
         return volumes;
     }
 
+
     public static Volume viewInformationAboutASpecificVolume() throws URISyntaxException, IOException {
         Scanner in = new Scanner(System.in);
         String volumeId;
@@ -187,26 +192,11 @@ public class SearchVolumeMenu {
         return volume;
     }
 
+
     public static String searchHistory() throws IOException {
-        String filename = "C:\\Users\\user\\Desktop\\Projects\\Java Projects\\Google Books\\Google-Books-Console-App\\searchHistory.txt";
-        String history = "";
-        StringBuilder sb = new StringBuilder();
-
-        try(BufferedReader bf = new BufferedReader(new FileReader(filename))){
-            System.out.println(bf.readLine());
-//            while ((history=bf.readLine())!=null) {
-//
-//                sb.append(history).append("\n");
-//            }
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
-            File searchHistoryFile = new File(filename);
-            searchHistoryFile.createNewFile();
-            System.out.println("File " + searchHistoryFile +" has been created");
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-
+        String history = readFile();
+        writeToFile(history);
         return history;
     }
+
 }
