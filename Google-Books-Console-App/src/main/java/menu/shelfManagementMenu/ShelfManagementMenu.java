@@ -16,7 +16,7 @@ public class ShelfManagementMenu {
 
     public static void displaySearchSelfManagement() {
         System.out.println("+--------------------------------------------------+");
-        System.out.println("|                 Self Management Menu             |");
+        System.out.println("|                 Shelf Management Menu            |");
         System.out.println("+--------------------------------------------------+");
         System.out.println("| 1.  Retrieve a list of user public shelves       |");
         System.out.println("| 2.  View information about a user's public shelf |");
