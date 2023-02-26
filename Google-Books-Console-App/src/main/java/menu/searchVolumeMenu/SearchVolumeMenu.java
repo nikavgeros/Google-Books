@@ -12,7 +12,7 @@ import static menu.searchVolumeMenu.options.SearchVolumeOptions.*;
 public class SearchVolumeMenu {
 
 
-    public static void displaySearchVolumesMenu(){
+    public static void displaySearchVolumesMenu() {
         System.out.println("+--------------------------------------------------+");
         System.out.println("|                   Volumes Menu                   |");
         System.out.println("+--------------------------------------------------+");
@@ -41,11 +41,11 @@ public class SearchVolumeMenu {
             switch (choice) {
                 case 1:
                     Volumes volumes = searchVolumesBasedOnCriteria();
-                    System.out.println(volumes.getItems().get(4).getVolumeInfo().toString());
+                    System.out.println(volumes.toString());
                     break;
                 case 2:
                     Volume volume = viewInformationAboutASpecificVolume();
-                    System.out.println(volume.getVolumeInfo().toString());
+                    System.out.println(volume.toString());
                     break;
                 case 3:
                     searchHistoryOption();

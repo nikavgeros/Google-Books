@@ -14,7 +14,7 @@ import static menu.shelfManagementMenu.options.ShelfManagementOptions.*;
 public class ShelfManagementMenu {
 
 
-    public static void displaySearchSelfManagement(){
+    public static void displaySearchSelfManagement() {
         System.out.println("+--------------------------------------------------+");
         System.out.println("|                 Self Management Menu             |");
         System.out.println("+--------------------------------------------------+");
